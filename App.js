@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM , {createRoot} from "react-dom";
+import ReactDOM  from "react-dom/client";
 import "./src/index.css";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Headline from "./src/Components/Headline";
@@ -40,5 +40,5 @@ const routeapp = createBrowserRouter([
     
 ])
 
-const root = ReactDOM.createRoot(document.getElementById("Root"));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<RouterProvider router={routeapp} />);
