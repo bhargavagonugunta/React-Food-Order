@@ -5,17 +5,21 @@ import { CLOUD_IMG, RESTRO_MENU } from "./Constatns";
 
 const RestarentMenu =()=>{
     const {Restid} =useParams();
-    const kid = 70704;
+    //const kid = 70704;
 
-    const restrarentMenu= useRestroMenu(kid);
-
+    const restrarentMenu= useRestroMenu(parseInt( Restid));
+    console.log(restrarentMenu)
+    console.log(Restid)
    
     return (
         <div className="Restro-menu">
             <div>
             <h1>Restorent Number: {Restid}</h1>
             <h2>{restrarentMenu?.name}</h2>
-            <img src={CLOUD_IMG+RestarentMenu?.cloudinaryImageId} />
+            <img src={CLOUD_IMG+RestarentMenu?.card?.card?.cloudinaryImageId} />
+            <ul>{RestarentMenu[1].card.card.itemCards.map((restro)=>{
+                return(<li >{restro.info.name}  </li>)
+            })}</ul>
             <h2></h2>
             </div>
             <div>

@@ -32,7 +32,7 @@ const routeapp = createBrowserRouter([
                 element:<About />
             },
             {
-                path:"/RestarentMenue/:Restid",
+                path:"/RestaurantMenu/:Restid",
                 element:<RestarentMenu />
             }
         ]
