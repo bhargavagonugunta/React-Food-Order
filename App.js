@@ -7,20 +7,23 @@ import Error from "./src/Components/Error";
 import Body from "./src/Components/Body";
 import About from "./src/Components/About";
 import RestarentMenu from "./src/Components/RestarentMenu";
+import { Provider } from "react-redux";
+import store from "./src/utils/store"
+import Cart from "./src/Components/Cart";
 
 const AppLeayout = ()=> {
     return(
-        < >  
+        <Provider store={store} >  
         <Headline/> 
         < Outlet />
-        </>
+        </Provider>
     )
 }
 
 const routeapp = createBrowserRouter([
     {
         path:"/",
-        element:<AppLeayout /> ,
+        element:<AppLeayout/>,
         errorElement:<Error/>,
         children:[
             {
@@ -34,7 +37,12 @@ const routeapp = createBrowserRouter([
             {
                 path:"/RestaurantMenu/:Restid",
                 element:<RestarentMenu />
-            }
+            },
+            {
+                path:"/Cart",
+                element:<Cart />
+            },
+
         ]
     },
     

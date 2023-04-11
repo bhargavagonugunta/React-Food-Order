@@ -1,20 +1,27 @@
 import { useEffect, useState } from "react";
+import { useDispatch} from "react-redux";
 import { Link, useParams } from "react-router-dom"
 import useRestroMenu from "../utils/useRestroMenu";
 import { CLOUD_IMG, RESTRO_MENU } from "./Constatns";
-
+import { render } from '@testing-library/react';
+import store from "../utils/store";
+import { addToCart } from "../utils/Cartslice";
 const RestarentMenu =()=>{
     const {Restid} =useParams();
     //const kid = 70704;
     //const [restroMenu,setRestroMenu] = useState({});
-   
-
     const restrarentMenu= useRestroMenu(parseInt( Restid));
-    console.log(restrarentMenu)
-    console.log(Restid)
+   // console.log(restrarentMenu)
+   // console.log(Restid)
     const menu = restrarentMenu[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards
   //  setRestroMenu(menu);
-    console.log(menu)
+    //console.log(menu)
+    const dispatch = useDispatch();
+    
+    const handleredeuser=(itam)=>{
+        console.log('called')
+        dispatch(addToCart(itam))
+    }
    
     return (
         <div className="flex">
@@ -26,7 +33,8 @@ const RestarentMenu =()=>{
             </div>
             <div className="ml-6 ">
             {menu?.map((restro)=>{
-                return(<Link to="/Cart" ><li key={restro.id} >{...restro?.card?.info?.name} </li> </Link>)
+                const menunames= restro?.card?.info?.name
+                return(<li className="hover:cursor-pointer" key={restro?.card?.info?.id} onClick={()=>handleredeuser(menunames)} >{...restro?.card?.info?.name} </li> )
             })}
             
             </div>

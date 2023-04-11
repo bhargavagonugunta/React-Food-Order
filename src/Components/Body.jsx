@@ -22,6 +22,10 @@ async function GetRestro(){
     setRestrolist(datajson?.data?.cards[2]?.data?.data?.cards)
     setallRestro(datajson?.data?.cards[2]?.data?.data?.cards)
 }
+const findRestarent = ()=>{
+    const deeta = findRestro(allRestro,searchtext)
+    setRestrolist(deeta)
+}
 if(allRestro.length===0){
     return (<Simmer />)
 }
@@ -34,11 +38,14 @@ return  ( <>
         value={searchtext}
         onChange ={(e)=>{
         setsearchtext(e.target.value)}}
+        onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              findRestarent()
+            }}}
         />
-        {searchtext}
+       {/* {searchtext} */}
         <button className="bg-blue-300 w-20 hover:bg-blue-700 ml-3 rounded-xl m-2" onClick={()=> {
-            const deeta = findRestro(allRestro,searchtext)
-            setRestrolist(deeta)
+        findRestarent()   
         }}>Search </button>
     </div>
         <div className="flex flex-wrap">
